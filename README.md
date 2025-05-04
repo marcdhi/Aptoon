@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Aptoon: Webtoon Creation Platform for Gamers Built on Solana
 
-## Getting Started
+> 👉 **Aptoon, Your Game, Your Story!**
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Aptoon** is a Solana-based Web3 platform that transforms gamers’ gameplay moments into animated webtoons using AI. Acting as a bridge between gaming, content creation, and blockchain ownership, Aptoon allows users to share stories, build communities, and earn rewards. Game developers benefit from organic user engagement and IP expansion led by fans.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Problem Statement
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Web3 games suffer from high user churn and lack long-term engagement mechanisms.
+- Players have no way to express or monetize their gameplay experiences.
+- Game developers need scalable, fun UGC marketing strategies.
+- Content creation is resource-intensive and inaccessible to most users.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Solution
 
-## Learn More
+Aptoon provides a creative ecosystem where:
 
-To learn more about Next.js, take a look at the following resources:
+- Gamers turn their gameplay into comic-style stories through AI agents.
+- These webtoons are shareable and mintable as NFTs on Solana.
+- Viewers and creators earn SPL token rewards based on interactions.
+- Game-linked profiles visualize data and strengthen community experiences.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Target Users
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Web3 gamers and communities
+- Game developers and Web3 game studios
+- Casual content creators and consumers
+- NFT collectors and enthusiasts
 
-## Deploy on Vercel
+## Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **AI Cartoon Generator**: Automatically transforms gameplay clips into webtoon format
+- **NFT Publishing**: Every cartoon can be minted and traded as an NFT
+- **Game-linked Profiles**: Display user data such as levels, items, and achievements
+- **Engagement-based Rewards**: Earn SPL tokens from likes, comments, and views
+- **Community Hub & Leaderboards**: Game-specific leaderboards and interaction zones
+- **Creator Dashboard**: Manage revenue, performance, and content
+- **Wallet & Transaction Viewer**: Manage rewards and NFTs directly
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How It Works
+
+![image](https://github.com/user-attachments/assets/f34834cb-ac92-4042-82df-41071c3a6abf)
+
+1. **Connect Solana Wallet** (Phantom, Backpack, etc.)
+2. **Link Game Account** (via API or manual input)
+3. **Upload Gameplay Clip or Write text on prompt**
+4. **AI Agent Generates Cartoon** (editable if needed)
+5. **Publish Cartoon**: Shown on main feed + optional NFT minting
+6. **Engage & Earn**: Both creators and viewers receive token rewards
+7. **Claim Rewards**: Tokens are sent directly to connected wallets
