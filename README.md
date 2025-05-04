@@ -1,4 +1,4 @@
-## Aptoon: Webtoon Creation Platform for Gamers Built on Solana
+## Aptoon: Launches First Solana-Based AI Comic Platform for Gamers
 
 > 👉 **Aptoon, Your Game, Your Story!**
 
