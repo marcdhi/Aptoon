@@ -4,6 +4,8 @@
 
 > 👉 **Aptoon, Your Game, Your Story!**
 
+#### [Demo]() | [Pitchdeck](https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx) | [Demovideo]()
+
 ## Overview
 
 **Aptoon** is a Solana-based Web3 platform that transforms gamers’ gameplay moments into animated webtoons using AI. Acting as a bridge between gaming, content creation, and blockchain ownership, Aptoon allows users to share stories, build communities, and earn rewards. Game developers benefit from organic user engagement and IP expansion led by fans.
