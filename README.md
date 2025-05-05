@@ -1,4 +1,4 @@
-<img width="1280" alt="github banner-aptoon" src="https://github.com/user-attachments/assets/f256066a-5d62-477a-a6bf-c42fac53e7b7" />
+<img width="1000" height="400" alt="github banner-aptoon" src="https://github.com/user-attachments/assets/f256066a-5d62-477a-a6bf-c42fac53e7b7" />
 
 ## Aptoon: Launches First Solana-Based AI Comic Platform for Gamers
 
