@@ -26,8 +26,8 @@ const navItems = [
 
 export function Sidebar() {
   return (
-    <div className="w-full md:w-64 border-r min-h-screen p-4">
-      <nav className="space-y-4">
+    <div className="sticky top-16 w-full md:w-64 border-r bg-white h-[calc(100vh-4rem)]">
+      <nav className="p-4 space-y-4">
         {navItems.map((item) => (
           <Link
             key={item.name}

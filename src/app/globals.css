@@ -79,11 +79,11 @@
   }
 
   .btn-aptoon {
-    @apply w-[193px] h-[40px] rounded-[1px] border border-black bg-white px-3 py-2 gap-2 flex items-center justify-center shadow-[2px_-2px_0px_0px_#000000] transition-all;
+    @apply h-[40px] rounded-[1px] border border-black bg-white px-3 py-2 gap-2 flex items-center justify-center shadow-[2px_-2px_0px_0px_#000000];
     @apply font-heading text-[18px] font-bold leading-[134%] tracking-[0%] align-middle uppercase;
-    @apply hover:translate-y-[1px] hover:shadow-[1px_-1px_0px_0px_#000000];
-    @apply active:w-[153px] active:bg-[#F2F2F2] active:p-2 active:shadow-[2px_-2px_0px_0px_#000000_inset];
-    @apply hover:text-[#C24B41];
+    @apply transition-all duration-200 ease-in-out;
+    @apply hover:translate-y-[1px] hover:shadow-[1px_-1px_0px_0px_#000000] hover:text-[#C24B41];
+    @apply active:bg-[#F2F2F2] active:p-2 active:shadow-[2px_-2px_0px_0px_#000000_inset];
   }
 
   .comic-card {

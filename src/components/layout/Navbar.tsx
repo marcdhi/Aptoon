@@ -11,7 +11,7 @@ export function Navbar() {
   const { connected } = useWallet();
 
   return (
-    <header className="w-full border-b">
+    <header className="sticky top-0 z-50 w-full border-b bg-white">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center">
