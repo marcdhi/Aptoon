@@ -35,23 +35,26 @@ export function Navbar() {
         </div>
 
         {/* Right side buttons */}
-        <div className="flex items-center gap-2">
-          {connected ? (
-            <button className="btn-aptoon font-heading">
-              <span>CREATE COMIC</span>
-              <Plus className="h-4 w-4" />
-            </button>
-          ) : (
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
             <WalletButton />
-          )}
+            {connected && (
+              <button className="btn-aptoon font-heading">
+                <span>CREATE COMIC</span>
+                <Plus className="h-4 w-4" />
+              </button>
+            )}
+          </div>
 
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <Bell className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Bell className="h-5 w-5" />
+            </Button>
 
-          <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
-          </Button>
+            <Button variant="ghost" size="icon">
+              <User className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </header>

@@ -1,4 +1,4 @@
-/* @import '@solana/wallet-adapter-react-ui/styles.css'; */
+@import '@solana/wallet-adapter-react-ui/styles.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -192,5 +192,38 @@
   
   .wallet-adapter-modal-button-close:hover {
     @apply opacity-80;
+  }
+
+  /* Wallet Adapter Overrides */
+  .wallet-adapter-modal {
+    @apply font-heading;
+  }
+
+  .wallet-adapter-modal-wrapper {
+    @apply bg-white border border-black rounded-[1px] shadow-[2px_-2px_0px_0px_#000000];
+  }
+
+  .wallet-adapter-modal-title {
+    @apply text-black;
+  }
+
+  .wallet-adapter-modal-list {
+    @apply m-0;
+  }
+
+  .wallet-adapter-modal-list .wallet-adapter-button {
+    @apply font-heading bg-white border border-black rounded-[1px] text-black transition-colors hover:text-[#C24B41];
+  }
+
+  .wallet-adapter-dropdown {
+    @apply font-heading;
+  }
+
+  .wallet-adapter-dropdown-list {
+    @apply bg-white border border-black rounded-[1px] shadow-[2px_-2px_0px_0px_#000000];
+  }
+
+  .wallet-adapter-dropdown-list-item {
+    @apply font-heading text-black transition-colors hover:bg-[#F2F2F2] hover:text-[#C24B41];
   }
 }
