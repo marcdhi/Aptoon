@@ -37,6 +37,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  transpilePackages: ['@solana/wallet-adapter-react-ui']
 };
 
 module.exports = nextConfig;

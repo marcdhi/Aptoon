@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Search, Bell, User, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletButton } from "@/components/WalletButton";
 
 export function Navbar() {
+  const { connected } = useWallet();
+
   return (
     <header className="w-full border-b">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
@@ -30,10 +36,14 @@ export function Navbar() {
 
         {/* Right side buttons */}
         <div className="flex items-center gap-2">
-          <Button variant="outline" className="flex items-center font-bold border-2 gap-1 bg-white">
-            <span>CREATE COMIC</span>
-            <Plus className="h-4 w-4" />
-          </Button>
+          {connected ? (
+            <button className="btn-aptoon font-heading">
+              <span>CREATE COMIC</span>
+              <Plus className="h-4 w-4" />
+            </button>
+          ) : (
+            <WalletButton />
+          )}
 
           <Button variant="ghost" size="icon" className="hidden md:flex">
             <Bell className="h-5 w-5" />

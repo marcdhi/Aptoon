@@ -1,3 +1,4 @@
+/* @import '@solana/wallet-adapter-react-ui/styles.css'; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -64,30 +65,76 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
   }
 }
 
 /* Custom Aptoon styles */
 @layer components {
+  .featured-title {
+    @apply font-heading text-[42px] font-extrabold leading-[134%] tracking-[-0.07em] align-middle uppercase;
+  }
+
+  .btn-aptoon {
+    @apply w-[193px] h-[40px] rounded-[1px] border border-black bg-white px-3 py-2 gap-2 flex items-center justify-center shadow-[2px_-2px_0px_0px_#000000] transition-all;
+    @apply font-heading text-[18px] font-bold leading-[134%] tracking-[0%] align-middle uppercase;
+    @apply hover:translate-y-[1px] hover:shadow-[1px_-1px_0px_0px_#000000];
+    @apply active:w-[153px] active:bg-[#F2F2F2] active:p-2 active:shadow-[2px_-2px_0px_0px_#000000_inset];
+    @apply hover:text-[#C24B41];
+  }
+
   .comic-card {
-    @apply border border-gray-200 rounded-lg overflow-hidden;
+    @apply w-[400px] h-[360px] rounded-[2px] border border-black bg-white overflow-hidden transition-all duration-300;
+    @apply hover:shadow-[2px_-2px_0px_0px_#000000_inset];
+  }
+
+  .comic-card .image-container {
+    @apply relative h-[280px] overflow-hidden;
+  }
+
+  .comic-card .image-container img {
+    @apply w-full h-full object-cover transition-all duration-500;
+    filter: grayscale(100%) contrast(1.2);
+  }
+
+  .comic-card:hover .image-container img {
+    @apply scale-110;
+    filter: grayscale(0%) contrast(1.1) saturate(1.3);
   }
 
   .comic-stats {
-    @apply flex items-center gap-2 text-sm text-gray-600;
+    @apply absolute bottom-4 left-4 flex gap-4 z-10;
   }
 
-  .comic-title {
-    @apply text-lg font-semibold;
+  .comic-stats > div {
+    @apply bg-white/90 backdrop-blur-sm rounded-sm flex items-center px-4 py-2;
+  }
+
+  .comic-stats span {
+    @apply text-base font-medium ml-2;
+  }
+
+  .comic-info {
+    @apply p-4 bg-white border-t border-black;
+  }
+
+  .comic-card .comic-title {
+    @apply text-xl font-heading font-bold transition-colors duration-300 uppercase leading-tight;
+  }
+
+  .comic-card:hover .comic-title {
+    @apply text-[#C24B41];
   }
 
   .game-name {
-    @apply text-sm text-gray-500;
+    @apply text-sm text-gray-500 mt-2;
   }
 
   .section-title {
-    @apply text-3xl font-bold mb-6;
+    @apply text-3xl font-heading font-bold mb-6;
   }
 
   .see-more {
@@ -104,5 +151,46 @@
 
   .game-section {
     @apply border border-gray-200 rounded-lg p-4 flex justify-between items-center;
+  }
+
+  /* Wallet Adapter Styles */
+  .wallet-adapter-button {
+    @apply bg-transparent border-none p-0;
+  }
+  
+  .wallet-adapter-button-trigger {
+    @apply bg-transparent;
+  }
+  
+  .wallet-adapter-button-start-icon {
+    @apply mr-2;
+  }
+  
+  .wallet-adapter-dropdown {
+    @apply w-full;
+  }
+  
+  .wallet-adapter-dropdown-list {
+    @apply bg-white border border-black rounded-[1px];
+  }
+  
+  .wallet-adapter-dropdown-list-item {
+    @apply rounded-none font-heading py-3 px-4 transition-all duration-200;
+  }
+  
+  .wallet-adapter-dropdown-list-item:hover {
+    @apply bg-[#F2F2F2] text-[#C24B41];
+  }
+  
+  .wallet-adapter-modal-wrapper {
+    @apply bg-white border border-black rounded-[1px] shadow-[2px_-2px_0px_0px_#000000];
+  }
+  
+  .wallet-adapter-modal-button-close {
+    @apply bg-transparent border border-black rounded-[1px];
+  }
+  
+  .wallet-adapter-modal-button-close:hover {
+    @apply opacity-80;
   }
 }
