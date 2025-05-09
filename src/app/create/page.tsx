@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { SiteLayout } from '@/components/layout/SiteLayout';
-import { UploadContent } from '@/components/create-comic/UploadContent';
+import { CreateComicTabs } from '@/components/create-comic/CreateComicTabs';
 
 export default function CreateComicPage() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -11,13 +11,29 @@ export default function CreateComicPage() {
     setIsGenerating(true);
     // Add your comic generation logic here
     // When done, set isGenerating to false
+    
+    // Simulating generation process
+    setTimeout(() => {
+      setIsGenerating(false);
+    }, 3000);
+  };
+
+  const handleRegenerate = () => {
+    setIsGenerating(true);
+    // Add your comic regeneration logic here
+    
+    // Simulating regeneration process
+    setTimeout(() => {
+      setIsGenerating(false);
+    }, 3000);
   };
 
   return (
     <SiteLayout>
-      <UploadContent 
-        onGenerate={handleGenerate}
+      <CreateComicTabs 
         isGenerating={isGenerating}
+        onGenerate={handleGenerate}
+        onRegenerate={handleRegenerate}
       />
     </SiteLayout>
   );

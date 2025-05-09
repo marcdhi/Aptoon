@@ -1,5 +1,9 @@
+'use client';
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Home, BookOpen, User, Trophy } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   {
@@ -25,19 +29,29 @@ const navItems = [
 ];
 
 export function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <div className="sticky top-16 w-full md:w-64 border-r bg-white h-[calc(100vh-4rem)]">
-      <nav className="p-4 space-y-4">
-        {navItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className="flex items-center p-2 hover:bg-gray-100 rounded-md transition-colors font-semibold"
-          >
-            {item.icon}
-            {item.name}
-          </Link>
-        ))}
+      <nav className="p-4 space-y-2">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={cn(
+                "flex items-center px-4 py-3 rounded-[2px] transition-colors font-heading font-bold",
+                "hover:text-[#C24B41] active:bg-gray-100",
+                isActive && "text-[#C24B41]"
+              )}
+            >
+              {item.icon}
+              {item.name}
+            </Link>
+          );
+        })}
       </nav>
     </div>
   );
