@@ -3,76 +3,116 @@
 import { useState } from 'react';
 import { Textarea } from '../ui/textarea';
 import { LoadingSpinner } from '../ui/loading-spinner';
+import { VideoToComic } from './VideoToComic';
 
-export interface UploadContentProps {
-  onGenerate: () => void;
-  isGenerating?: boolean;
+interface UploadContentProps {
+  onGenerate: (comicUrl: string) => void;
+  isGenerating: boolean;
 }
 
-export function UploadContent({ onGenerate, isGenerating = false }: UploadContentProps) {
+export function UploadContent({ onGenerate, isGenerating }: UploadContentProps) {
   const [prompt, setPrompt] = useState('');
+  const [comicUrl, setComicUrl] = useState<string | null>(null);
+
+  const handleVideoSuccess = (url: string) => {
+    setComicUrl(url);
+    onGenerate(url);
+  };
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col gap-4">
-        <label className="block text-sm font-heading font-medium">WRITE YOUR PROMPT</label>
-        <Textarea
-          placeholder="Write your prompt"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+    <div className="space-y-8">
+      {/* Prompt Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-heading font-medium">WRITE YOUR PROMPT</h3>
+        <div className="flex flex-col gap-4">
+          <Textarea
+            placeholder="Write your prompt to generate a comic..."
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            className="min-h-[100px]"
+          />
+          <button 
+            className="btn-aptoon w-full sm:w-auto"
+            onClick={() => onGenerate(comicUrl || '')}
+            disabled={isGenerating || !prompt.trim()}
+          >
+            {isGenerating ? (
+              <>
+                <LoadingSpinner className="mr-2" />
+                GENERATING FROM PROMPT
+              </>
+            ) : (
+              'GENERATE FROM PROMPT'
+            )}
+          </button>
+        </div>
+      </div>
+
+      <div className="relative py-4">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200" />
+        </div>
+        <div className="relative flex justify-center">
+          <span className="bg-white px-4 text-sm text-gray-500">OR</span>
+        </div>
+      </div>
+
+      {/* Video Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-heading font-medium">UPLOAD VIDEO</h3>
+        <VideoToComic
+          onSuccess={handleVideoSuccess}
+          isGenerating={isGenerating}
         />
       </div>
 
-      <div className="border-2 border-dashed border-gray-300 rounded-[2px] p-8">
-        <div className="text-center space-y-4">
-          <div className="mx-auto w-12 h-12 text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-sm font-heading font-medium mb-4">DROP YOUR VIDEO CLIP HERE OR BROWSE</p>
-            <div className="flex justify-center">
-              <button className="btn-aptoon">
-                UPLOAD CLIPS
-              </button>
-            </div>
-          </div>
+      <div className="relative py-4">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200" />
+        </div>
+        <div className="relative flex justify-center">
+          <span className="bg-white px-4 text-sm text-gray-500">OR</span>
         </div>
       </div>
 
-      <div className="text-center">
-        <p className="text-sm text-gray-500 mb-4">OR</p>
-      </div>
-
+      {/* Library Section */}
       <div className="space-y-4">
-        <h3 className="text-center font-heading font-medium">GAME CLIP LIBRARY</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <h3 className="text-lg font-heading font-medium">GAME CLIP LIBRARY</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="aspect-video bg-gray-200 rounded-[2px]" />
+            <div key={i} className="aspect-video bg-gray-200 rounded-[2px] cursor-pointer hover:opacity-80 transition-opacity" />
           ))}
         </div>
-        <div className="flex justify-center w-auto mx-auto">
-          <button className="btn-aptoon">LINK MORE GAMES</button>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button className="btn-aptoon w-full sm:w-auto">LINK MORE GAMES</button>
+          <button 
+            className="btn-aptoon w-full sm:w-auto"
+            onClick={() => onGenerate(comicUrl || '')}
+            disabled={isGenerating}
+          >
+            {isGenerating ? (
+              <>
+                <LoadingSpinner className="mr-2" />
+                GENERATING FROM LIBRARY
+              </>
+            ) : (
+              'GENERATE FROM LIBRARY'
+            )}
+          </button>
         </div>
       </div>
 
-      <div className="pt-6">
-        <button 
-          className="btn-aptoon w-full mx-auto block"
-          onClick={onGenerate}
-          disabled={isGenerating}
-        >
-          {isGenerating ? (
-            <>
-              <LoadingSpinner className="mr-2" />
-              GENERATING COMIC
-            </>
-          ) : (
-            'GENERATE COMIC'
-          )}
-        </button>
-      </div>
+      {/* Preview Comic */}
+      {comicUrl && (
+        <div className="mt-8">
+          <h3 className="text-lg font-heading font-medium mb-4">PREVIEW</h3>
+          <img
+            src={comicUrl}
+            alt="Generated Comic"
+            className="w-full rounded-[2px] shadow-lg"
+          />
+        </div>
+      )}
     </div>
   );
 } 

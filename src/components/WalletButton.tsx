@@ -4,12 +4,27 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { Loader2, User, LogOut } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export const WalletButton = () => {
   const { connected, connecting, publicKey, disconnect } = useWallet();
   const { setVisible } = useWalletModal();
   const [showDropdown, setShowDropdown] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Set cookie when wallet is connected
+    if (connected) {
+      document.cookie = "wallet_connected=true; path=/";
+    } else {
+      document.cookie = "wallet_connected=false; path=/";
+      // If on create page and wallet disconnects, redirect to home
+      if (window.location.pathname === '/create') {
+        router.push('/');
+      }
+    }
+  }, [connected, router]);
 
   const handleConnect = () => {
     if (!connected) {

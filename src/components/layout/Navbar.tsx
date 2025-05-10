@@ -39,10 +39,12 @@ export function Navbar() {
           <div className="flex items-center space-x-2">
             <WalletButton />
             {connected && (
-              <button className="btn-aptoon font-heading">
-                <span>CREATE COMIC</span>
-                <Plus className="h-4 w-4" />
-              </button>
+              <Link href="/create">
+                <button className="btn-aptoon font-heading">
+                  <span>CREATE COMIC</span>
+                  <Plus className="h-4 w-4" />
+                </button>
+              </Link>
             )}
           </div>
 

@@ -3,7 +3,11 @@ import { Textarea } from '../ui/textarea';
 import { Input } from '../ui/input';
 import { Checkbox } from '../ui/checkbox';
 
-export function EditComic() {
+interface EditComicProps {
+  comicUrl: string | null;
+}
+
+export function EditComic({ comicUrl }: EditComicProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [selectedGame, setSelectedGame] = useState('');
@@ -11,6 +15,24 @@ export function EditComic() {
 
   return (
     <div className="space-y-6">
+      {/* Generated Comic Preview */}
+      <div className="space-y-2">
+        <label className="block text-sm font-heading font-medium">GENERATED COMIC</label>
+        <div className="aspect-video bg-gray-100 rounded-[2px] overflow-hidden">
+          {comicUrl ? (
+            <img
+              src={comicUrl}
+              alt="Generated Comic"
+              className="w-full h-full object-contain"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-400">
+              No comic generated yet
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* Title */}
       <div className="space-y-2">
         <label className="block text-sm font-heading font-medium">TITLE</label>
@@ -73,18 +95,6 @@ export function EditComic() {
           <label htmlFor="terms" className="text-sm text-gray-600">
             Estimated gas fee is equal to 0.0.3 USD.
           </label>
-        </div>
-      </div>
-
-      {/* Generated Comic Preview */}
-      <div className="space-y-2">
-        <label className="block text-sm font-heading font-medium">GENERATED COMIC</label>
-        <div className="aspect-video bg-gray-100 rounded-[2px] overflow-hidden">
-          <img
-            src="/images/comic-panel.jpg"
-            alt="Generated Comic"
-            className="w-full h-full object-cover"
-          />
         </div>
       </div>
     </div>

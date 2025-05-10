@@ -16,6 +16,7 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
   const [activeStep, setActiveStep] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [generatedComicUrl, setGeneratedComicUrl] = useState<string | null>(null);
 
   const handlePublish = () => {
     setShowConfirmation(true);
@@ -24,6 +25,12 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
   const confirmPublish = () => {
     setShowConfirmation(false);
     setShowSuccess(true);
+  };
+
+  const handleComicGenerated = (url: string) => {
+    setGeneratedComicUrl(url);
+    onGenerate();
+    setActiveStep(2);
   };
 
   if (showSuccess) {
@@ -91,17 +98,14 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
           
           {activeStep === 1 && (
             <UploadContent 
-              onGenerate={() => {
-                onGenerate();
-                setActiveStep(2);
-              }}
+              onGenerate={handleComicGenerated}
               isGenerating={isGenerating}
             />
           )}
 
           {activeStep === 2 && (
             <>
-              <EditComic />
+              <EditComic comicUrl={generatedComicUrl} />
               {isGenerating && (
                 <GenerationSteps
                   onRegenerate={onRegenerate}
