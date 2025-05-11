@@ -4,7 +4,7 @@
 
 > 👉 **Aptoon, Your Game, Your Story!**
 
-#### [Demo]() | [Pitchdeck](https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx) | [Demovideo]()
+#### [Demo]() | [Pitchdeck](https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx) | [Demo video]() | [Pitch video]()
 
 ## Overview
 
