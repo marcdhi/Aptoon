@@ -6,6 +6,10 @@
 
 #### [Demo]() | [Pitchdeck](https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx) | [Demo video]() | [Pitch video]() | [Twitter](https://x.com/Aptoondotsol)
 
+#### Explorer
+- Metaplex explorer: https://core.metaplex.com/explorer/BzWoDMYf8cHkiLmqrZDBCd1NNH15stN8hDsRZoEi8ReT?env=devnet
+- Solana explorer: https://explorer.solana.com/tx/2eq5728Ar3TjgAzTayCUztHVVdZxnYkSqLzuhsAbSuMWjiEQfnPLCrcwBUQ4CwkQq6BESZZmpTZc7cMAAMth7qoE?cluster=devnet
+
 ## Overview
 
 **Aptoon** is a Solana-based Web3 platform that transforms gamers’ gameplay moments into animated webtoons using AI. Acting as a bridge between gaming, content creation, and blockchain ownership, Aptoon allows users to share stories, build communities, and earn rewards. Game developers benefit from organic user engagement and IP expansion led by fans.
