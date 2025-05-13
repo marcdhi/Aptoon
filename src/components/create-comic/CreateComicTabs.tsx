@@ -5,6 +5,7 @@ import { ReviewComic } from './ReviewComic';
 import { SuccessMessage } from './SuccessMessage';
 import Image from 'next/image';
 import { GenerationSteps } from './GenerationSteps';
+import type { ComicMetadata } from '@/lib/chat';
 
 interface CreateComicTabsProps {
   isGenerating: boolean;
@@ -17,6 +18,7 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
   const [showSuccess, setShowSuccess] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [generatedComicUrl, setGeneratedComicUrl] = useState<string | null>(null);
+  const [comicMetadata, setComicMetadata] = useState<ComicMetadata | null>(null);
 
   const handlePublish = () => {
     setShowConfirmation(true);
@@ -27,8 +29,9 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
     setShowSuccess(true);
   };
 
-  const handleComicGenerated = (url: string) => {
+  const handleComicGenerated = (url: string, metadata: ComicMetadata) => {
     setGeneratedComicUrl(url);
+    setComicMetadata(metadata);
     onGenerate();
     setActiveStep(2);
   };
@@ -105,7 +108,11 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
 
           {activeStep === 2 && (
             <>
-              <EditComic comicUrl={generatedComicUrl} />
+              <EditComic 
+                comicUrl={generatedComicUrl} 
+                metadata={comicMetadata}
+                onMetadataChange={setComicMetadata}
+              />
               {isGenerating && (
                 <GenerationSteps
                   onRegenerate={onRegenerate}
@@ -117,7 +124,10 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
 
           {activeStep === 3 && (
             <>
-              <ReviewComic />
+              <ReviewComic 
+                comicUrl={generatedComicUrl}
+                metadata={comicMetadata}
+              />
               <div className="flex justify-between pt-6">
                 <button 
                   className="btn-aptoon"

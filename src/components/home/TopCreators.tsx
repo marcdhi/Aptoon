@@ -1,51 +1,92 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronRight, BookOpen, Heart } from "lucide-react";
+import { BookOpen, Heart } from "lucide-react";
 
-// Creator card component
-function CreatorCard() {
+interface CreatorCardProps {
+  id: string;
+  username: string;
+  avatarUrl: string;
+  comics: number;
+  likes: number;
+}
+
+function CreatorCard({ id, username, avatarUrl, comics, likes }: CreatorCardProps) {
   return (
-    <div className="creator-card">
-      <Avatar className="w-32 h-32 border-2 border-gray-200">
-        <AvatarImage src="/images/profile.jpg" alt="User profile" />
-        <AvatarFallback>UN</AvatarFallback>
-      </Avatar>
-      <h3 className="text-lg font-semibold mt-2">USERNAME</h3>
-      <div className="creator-stats">
-        <div className="flex items-center gap-1">
-          <BookOpen className="w-4 h-4" />
-          <span>45</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <Heart className="w-4 h-4" />
-          <span>102</span>
+    <Link href={`/creator/${id}`} className="creator-profile-card w-[220px]">
+      <div className="image-container">
+        <Image
+          src={avatarUrl}
+          alt={username}
+          width={220}
+          height={280}
+          className="object-cover grayscale contrast-125"
+          priority
+        />
+      </div>
+      <div className="creator-info">
+        <h3 className="username">{username}</h3>
+        <div className="stats">
+          <div className="stat-item">
+            <BookOpen className="w-4 h-4" />
+            <span>{comics}</span>
+          </div>
+          <div className="stat-item">
+            <Heart className="w-4 h-4" />
+            <span>{likes}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
+
+// Mock data with more realistic values
+const topCreators: CreatorCardProps[] = [
+  {
+    id: "1",
+    username: "Sophia Chen",
+    avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2187&auto=format&fit=crop",
+    comics: 24,
+    likes: 1289,
+  },
+  {
+    id: "2",
+    username: "Marcus Rivera",
+    avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2187&auto=format&fit=crop",
+    comics: 18,
+    likes: 956,
+  },
+  {
+    id: "3",
+    username: "Aisha Patel",
+    avatarUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=2187&auto=format&fit=crop",
+    comics: 31,
+    likes: 2145,
+  },
+  {
+    id: "4",
+    username: "David Kim",
+    avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2187&auto=format&fit=crop",
+    comics: 15,
+    likes: 876,
+  },
+  {
+    id: "5",
+    username: "Emma Wilson",
+    avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2187&auto=format&fit=crop",
+    comics: 28,
+    likes: 1567,
+  },
+];
 
 export function TopCreators() {
   return (
     <section className="mb-12">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="section-title">TOP CREATORS</h2>
-        <Link
-          href="/leaderboard"
-          className="see-more"
-        >
-          GO TO LEADERBOARD
-          <ChevronRight className="w-4 h-4" />
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        <CreatorCard />
-        <CreatorCard />
-        <CreatorCard />
-        <CreatorCard />
-        <CreatorCard />
+      <h2 className="section-title">TOP CREATORS</h2>
+      <div className="flex flex-wrap gap-4 justify-start">
+        {topCreators.map((creator) => (
+          <CreatorCard key={creator.id} {...creator} />
+        ))}
       </div>
     </section>
   );

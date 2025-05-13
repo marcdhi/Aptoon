@@ -1,99 +1,100 @@
 import { useState } from 'react';
 import { Textarea } from '../ui/textarea';
 import { Input } from '../ui/input';
-import { Checkbox } from '../ui/checkbox';
+import type { ComicMetadata } from '@/lib/chat';
 
 interface EditComicProps {
   comicUrl: string | null;
+  metadata: ComicMetadata | null;
+  onMetadataChange: (metadata: ComicMetadata) => void;
 }
 
-export function EditComic({ comicUrl }: EditComicProps) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [selectedGame, setSelectedGame] = useState('');
-  const [acceptTerms, setAcceptTerms] = useState(false);
+export function EditComic({ comicUrl, metadata, onMetadataChange }: EditComicProps) {
+  const [localMetadata, setLocalMetadata] = useState<ComicMetadata>(
+    metadata || {
+      title: '',
+      description: '',
+      genre: '',
+      mood: '',
+      suggestedTags: []
+    }
+  );
+
+  const handleMetadataChange = (field: keyof ComicMetadata, value: string) => {
+    const updatedMetadata = {
+      ...localMetadata,
+      [field]: field === 'suggestedTags' ? value.split(',').map(tag => tag.trim()) : value
+    };
+    setLocalMetadata(updatedMetadata);
+    onMetadataChange(updatedMetadata);
+  };
 
   return (
-    <div className="space-y-6">
-      {/* Generated Comic Preview */}
-      <div className="space-y-2">
-        <label className="block text-sm font-heading font-medium">GENERATED COMIC</label>
-        <div className="aspect-video bg-gray-100 rounded-[2px] overflow-hidden">
-          {comicUrl ? (
-            <img
-              src={comicUrl}
-              alt="Generated Comic"
-              className="w-full h-full object-contain"
+    <div className="space-y-8">
+      {/* Comic Preview */}
+      {comicUrl && (
+        <div className="aspect-square w-full relative rounded-[2px] overflow-hidden">
+          <img
+            src={comicUrl}
+            alt="Generated Comic"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      {/* Metadata Form */}
+      <div className="space-y-6">
+        <div className="space-y-4">
+          <label className="block">
+            <span className="text-sm font-medium text-gray-700">Title</span>
+            <Input
+              value={localMetadata.title}
+              onChange={(e) => handleMetadataChange('title', e.target.value)}
+              placeholder="Enter comic title"
+              className="mt-1"
             />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400">
-              No comic generated yet
-            </div>
-          )}
-        </div>
-      </div>
+          </label>
 
-      {/* Title */}
-      <div className="space-y-2">
-        <label className="block text-sm font-heading font-medium">TITLE</label>
-        <Input
-          placeholder="Write your comic title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border-gray-300"
-        />
-      </div>
+          <label className="block">
+            <span className="text-sm font-medium text-gray-700">Description</span>
+            <Textarea
+              value={localMetadata.description}
+              onChange={(e) => handleMetadataChange('description', e.target.value)}
+              placeholder="Enter comic description"
+              className="mt-1"
+            />
+          </label>
 
-      {/* Description */}
-      <div className="space-y-2">
-        <label className="block text-sm font-heading font-medium">COMIC DESCRIPTION</label>
-        <Textarea
-          placeholder="Write your comment"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="min-h-[100px] border-gray-300"
-        />
-      </div>
-
-      {/* Game Selection */}
-      <div className="space-y-2">
-        <label className="block text-sm font-heading font-medium">CHOOSE THE RELATED GAME</label>
-        <div className="relative">
-          <Input
-            placeholder="search games..."
-            value={selectedGame}
-            onChange={(e) => setSelectedGame(e.target.value)}
-            className="border-gray-300 pr-10"
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-            <svg
-              className="h-5 w-5 text-[#C24B41]"
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
+          <div className="grid grid-cols-2 gap-4">
+            <label className="block">
+              <span className="text-sm font-medium text-gray-700">Genre</span>
+              <Input
+                value={localMetadata.genre}
+                onChange={(e) => handleMetadataChange('genre', e.target.value)}
+                placeholder="e.g., Action, RPG"
+                className="mt-1"
               />
-            </svg>
-          </div>
-        </div>
-      </div>
+            </label>
 
-      {/* Terms and Conditions */}
-      <div className="space-y-2">
-        <label className="block text-sm font-heading font-medium">ACCEPT THE TERMS AND CONDITIONS</label>
-        <div className="flex items-center gap-2">
-          <Checkbox
-            id="terms"
-            checked={acceptTerms}
-            onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
-          />
-          <label htmlFor="terms" className="text-sm text-gray-600">
-            Estimated gas fee is equal to 0.0.3 USD.
+            <label className="block">
+              <span className="text-sm font-medium text-gray-700">Mood</span>
+              <Input
+                value={localMetadata.mood}
+                onChange={(e) => handleMetadataChange('mood', e.target.value)}
+                placeholder="e.g., Epic, Intense"
+                className="mt-1"
+              />
+            </label>
+          </div>
+
+          <label className="block">
+            <span className="text-sm font-medium text-gray-700">Tags</span>
+            <Input
+              value={localMetadata.suggestedTags.join(', ')}
+              onChange={(e) => handleMetadataChange('suggestedTags', e.target.value)}
+              placeholder="Enter tags separated by commas"
+              className="mt-1"
+            />
           </label>
         </div>
       </div>
