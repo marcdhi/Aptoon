@@ -1,14 +1,25 @@
 <img width="1000" height="400" alt="github banner-aptoon" src="https://github.com/user-attachments/assets/f256066a-5d62-477a-a6bf-c42fac53e7b7" />
 
-## Aptoon: Launches First Solana-Based AI Comic Platform for Gamers
+<h2 align="center">Launches First Solana-Based <code>AI Comic</code> Platform for Gamers</h2>
 
-> 👉 **Aptoon, Your Game, Your Story!**
+<p align="center">
+  <a href="" style="color: #a77dff">APTOON</a> | <a href="" style="color: #a77dff">Demo Video</a> | <a href="https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx" style="color: #a77dff">Pitchdeck</a> | <a href="" style="color: #a77dff">Pitch Video</a>  | <a href="https://x.com/Aptoondotsol" style="color: #a77dff">Twitter</a>
+</p>
 
-#### [Demo]() | [Pitchdeck](https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx) | [Demo video]() | [Pitch video]() | [Twitter](https://x.com/Aptoondotsol)
+<h2 align="center">Sponsor (Click on the logo)</h2>
 
-#### Explorer
-- Metaplex explorer: https://core.metaplex.com/explorer/BzWoDMYf8cHkiLmqrZDBCd1NNH15stN8hDsRZoEi8ReT?env=devnet
-- Solana explorer: https://explorer.solana.com/tx/2eq5728Ar3TjgAzTayCUztHVVdZxnYkSqLzuhsAbSuMWjiEQfnPLCrcwBUQ4CwkQq6BESZZmpTZc7cMAAMth7qoE?cluster=devnet
+<p align="center">
+<a href="" height="5" width="10" target="_blank">
+	<img src="https://github.com/user-attachments/assets/b66a5581-a3fd-4177-815e-78096cc7c8f0" width="100" height="100">
+<a><a href="" height="5" width="10" target="_blank">
+	<img src="https://github.com/user-attachments/assets/d316db27-65a4-44f3-a252-e4c7b3eaadca" width="100" height="100">
+<a><a><a href="" height="5" width="10" target="_blank">
+	<img src="https://github.com/user-attachments/assets/22a2cdbc-d75e-46f4-b3e5-dcaa1a8bd576" width="100" height="100">
+<a><a></p>
+
+<p align="center">
+  <a href="https://core.metaplex.com/explorer/BzWoDMYf8cHkiLmqrZDBCd1NNH15stN8hDsRZoEi8ReT?env=devnet" style="color: #a77dff">Metaplex explorer</a> | <a href="https://explorer.solana.com/tx/2eq5728Ar3TjgAzTayCUztHVVdZxnYkSqLzuhsAbSuMWjiEQfnPLCrcwBUQ4CwkQq6BESZZmpTZc7cMAAMth7qoE?cluster=devnet" style="color: #a77dff">Solana explorer</a>
+</p>
 
 ## Overview
 
