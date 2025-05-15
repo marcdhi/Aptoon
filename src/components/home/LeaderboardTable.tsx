@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import {
@@ -8,44 +11,72 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { supabase } from "@/lib/supabase";
+import type { ComicWithStats } from "@/types/comics";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// Sample data for the leaderboard
-const leaderboardData = [
-  {
-    rank: 1,
-    likes: 1000,
-    views: 100000,
-    creator: "username xya",
-    game: "League of Legends",
-    network: "Solana",
-  },
-  {
-    rank: 2,
-    likes: 500,
-    views: 2000,
-    creator: "username xya",
-    game: "League of Legends",
-    network: "Solana",
-  },
-  {
-    rank: 3,
-    likes: 300,
-    views: 3250,
-    creator: "username xya",
-    game: "League of Legends",
-    network: "Solana",
-  },
-  {
-    rank: 4,
-    likes: 25,
-    views: 102,
-    creator: "username xya",
-    game: "League of Legends",
-    network: "Solana",
-  },
-];
+function LoadingSkeleton() {
+  return (
+    <TableBody>
+      {[...Array(4)].map((_, index) => (
+        <TableRow key={`skeleton-${index}`}>
+          {[...Array(6)].map((_, cellIndex) => (
+            <TableCell key={`cell-${index}-${cellIndex}`}>
+              <Skeleton className="h-6 w-24" />
+            </TableCell>
+          ))}
+        </TableRow>
+      ))}
+    </TableBody>
+  );
+}
 
 export function LeaderboardTable() {
+  const [comics, setComics] = useState<ComicWithStats[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchLeaderboardData() {
+      try {
+        // First, get all comics
+        const { data: comicsData, error: comicsError } = await supabase
+          .from('comics')
+          .select('*');
+
+        if (comicsError) throw comicsError;
+
+        // For each comic, get its like count and view count
+        const comicsWithStats = await Promise.all(
+          (comicsData || []).map(async (comic) => {
+            const { count: likeCount } = await supabase
+              .from('likes')
+              .select('*', { count: 'exact' })
+              .eq('nft_address', comic.nft_address);
+
+            // TODO: Implement view counting in the future
+            const viewCount = 0;
+
+            return {
+              ...comic,
+              likes: likeCount || 0,
+              views: viewCount,
+            } as ComicWithStats;
+          })
+        );
+
+        // Sort by likes in descending order
+        const sortedComics = comicsWithStats.sort((a, b) => b.likes - a.likes);
+        setComics(sortedComics);
+      } catch (error) {
+        console.error('Error fetching leaderboard data:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchLeaderboardData();
+  }, []);
+
   return (
     <section className="mb-12">
       <div className="flex justify-between items-center mb-4">
@@ -63,31 +94,35 @@ export function LeaderboardTable() {
             <TableHead>LIKES</TableHead>
             <TableHead>VIEWS</TableHead>
             <TableHead>CREATOR</TableHead>
-            <TableHead>GAME</TableHead>
+            <TableHead>TITLE</TableHead>
             <TableHead className="text-right">NETWORK</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {leaderboardData.map((row) => (
-            <TableRow key={row.rank}>
-              <TableCell className="font-medium">{row.rank}</TableCell>
-              <TableCell>{row.likes}</TableCell>
-              <TableCell>{row.views}</TableCell>
-              <TableCell>{row.creator}</TableCell>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-gray-300 rounded-full" />
-                  {row.game}
-                </div>
-              </TableCell>
-              <TableCell className="text-right">
-                <div className="flex items-center justify-end gap-2">
-                  <div className="w-6 h-6 bg-gray-300 rounded-full" />
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        {loading ? (
+          <LoadingSkeleton />
+        ) : (
+          <TableBody>
+            {comics.map((comic, index) => (
+              <TableRow key={comic.nft_address}>
+                <TableCell className="font-medium">#{index + 1}</TableCell>
+                <TableCell>{comic.likes}</TableCell>
+                <TableCell>{comic.views || 0}</TableCell>
+                <TableCell>{comic.creator_address}</TableCell>
+                <TableCell>
+                  <Link href={`/comic/${comic.nft_address}`} className="hover:underline">
+                    {comic.title}
+                  </Link>
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full" />
+                    Solana
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        )}
       </Table>
     </section>
   );

@@ -6,6 +6,7 @@ import { base58 } from '@metaplex-foundation/umi/serializers';
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
 import type { WalletContextState } from '@solana/wallet-adapter-react';
 import { WebIrys } from '@irys/sdk';
+import { supabase } from '@/lib/supabase';
 
 interface MintNFTResult {
   signature: string;
@@ -116,6 +117,24 @@ export async function mintComicNFT(
 
   // Get the transaction signature
   const signature = base58.deserialize(tx.signature)[0];
+
+  // Store comic data in Supabase
+  try {
+    await supabase.from('comics').insert({
+      nft_address: asset.publicKey.toString(),
+      title,
+      description,
+      image_url: finalImageUrl,
+      creator_address: wallet.publicKey?.toString() || '',
+      metadata: {
+        attributes,
+        metadataUri
+      }
+    });
+  } catch (error) {
+    console.error('Failed to store comic data in Supabase:', error);
+    // Don't throw error here as NFT is already minted
+  }
 
   return {
     signature,

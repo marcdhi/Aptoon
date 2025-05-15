@@ -7,6 +7,7 @@ import type { DasApiAsset, GetAssetsByOwnerOutput } from '@metaplex-foundation/d
 import { publicKey } from '@metaplex-foundation/umi';
 import Image from 'next/image';
 import { Loader2, RefreshCw } from 'lucide-react';
+import { LikeButton } from '@/components/LikeButton';
 
 interface NFTMetadata {
   name: string;
@@ -221,24 +222,27 @@ export function UserNFTGrid({ publicKey: walletPublicKey }: UserNFTGridProps) {
                 </div>
               </div>
 
-              {/* View Links */}
+              {/* View Links and Like Button */}
               <div className="pt-4 flex justify-between items-center">
-                <a
-                  href={`https://explorer.solana.com/address/${nft.address}?cluster=devnet`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[#2A9D8F] hover:underline"
-                >
-                  View on Explorer
-                </a>
-                <a
-                  href={`https://core.metaplex.com/explorer/${nft.address}?env=devnet`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[#2A9D8F] hover:underline"
-                >
-                  View on Metaplex
-                </a>
+                <div className="flex gap-4">
+                  <a
+                    href={`https://explorer.solana.com/address/${nft.address}?cluster=devnet`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#2A9D8F] hover:underline"
+                  >
+                    View on Explorer
+                  </a>
+                  <a
+                    href={`https://core.metaplex.com/explorer/${nft.address}?env=devnet`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#2A9D8F] hover:underline"
+                  >
+                    View on Metaplex
+                  </a>
+                </div>
+                <LikeButton nftAddress={nft.address} />
               </div>
             </div>
           </div>
