@@ -6,7 +6,7 @@ import { Loader2, User, LogOut } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 export const WalletButton = () => {
   const { connected, connecting, publicKey, disconnect } = useWallet();
   const { setVisible } = useWalletModal();
@@ -70,7 +70,8 @@ export const WalletButton = () => {
       {/* Dropdown Menu */}
       {connected && showDropdown && (
         <div className="absolute top-full left-0 mt-2 w-full bg-white border border-black rounded-[1px] shadow-[2px_-2px_0px_0px_#000000] py-1 z-50">
-          <button 
+          <Link href="/profile">
+            <button 
             onClick={() => {
               setShowDropdown(false);
               // Add profile view logic here
@@ -80,6 +81,7 @@ export const WalletButton = () => {
             <User className="h-4 w-4 mr-2" />
             View Profile
           </button>
+          </Link>
           <button 
             onClick={() => {
               disconnect();
@@ -90,6 +92,7 @@ export const WalletButton = () => {
             <LogOut className="h-4 w-4 mr-2" />
             Logout
           </button>
+         
         </div>
       )}
     </div>
