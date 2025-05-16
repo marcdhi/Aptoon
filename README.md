@@ -25,21 +25,33 @@
 
 **Aptoon** is a Solana-based Web3 platform that transforms gamers’ gameplay moments into animated webtoons using AI. Acting as a bridge between gaming, content creation, and blockchain ownership, Aptoon allows users to share stories, build communities, and earn rewards. Game developers benefit from organic user engagement and IP expansion led by fans.
 
-## Problem Statement
+## Problems
 
-- Web3 games suffer from high user churn and lack long-term engagement mechanisms.
-- Players have no way to express or monetize their gameplay experiences.
-- Game developers need scalable, fun UGC marketing strategies.
-- Content creation is resource-intensive and inaccessible to most users.
+1. **Low User Retention and Lack of Long-Term Engagement in Web3 Games**
+   * Many Web3 games rely heavily on token-based rewards (Play to Earn), which often leads to high churn after initial user onboarding.
+   * There's a lack of engaging content loops, social interaction, and user-generated narratives that can drive long-term participation.
 
-## Solution
+2. **Limited Availability of Solana-Based Game Information**
+   * While most Web3 games are built on Ethereum or Layer 2 solutions, accessible and comprehensive information about Solana-based games is still lacking.
 
-Aptoon provides a creative ecosystem where:
+3. **Unengaging and Inefficient Game Information Formats**
+   * Traditional text-based guides and updates are not intuitive or fun, limiting how effectively players can share or consume content.
 
-- Gamers turn their gameplay into comic-style stories through AI agents.
-- These webtoons are shareable and mintable as NFTs on Solana.
-- Viewers and creators earn SPL token rewards based on interactions.
-- Game-linked profiles visualize data and strengthen community experiences.
+4. **Game Developers Need Scalable, Engaging UGC Marketing Strategies**
+   * Developers often lack mechanisms to encourage fan-driven content creation and organic IP expansion, making it difficult to build sustainable communities.
+
+## Solutions
+1. **Transform Gameplay into Engaging AI-Generated Comic Stories**
+   * APTOON allows users to turn their gaming moments into visual, comic-style stories using AI, making content fun, intuitive, and highly shareable.
+
+2. **Multi-Chain Game Discovery Starting with Solana**
+   * By focusing on Solana first and expanding to other chains, APTOON becomes a gateway for users to discover and engage with games across ecosystems.
+
+3. **Share-to-Earn Incentive System**
+   * Instead of just Play to Earn, APTOON rewards users for sharing valuable gameplay tips and stories, promoting content creation and community building.
+
+4. **NFT-Based Ownership and UGC Monetization**
+   * Users can mint their comic stories as NFTs, trade them, and build a portfolio of gameplay experiences that grow in value—empowering fans and supporting game studios with organic UGC marketing.
 
 ## Target Users
 
