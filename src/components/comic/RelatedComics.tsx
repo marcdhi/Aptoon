@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Heart, MessageSquare } from "lucide-react";
 
 interface RelatedComicProps {
-  id: string;
+  nftAddress: string;
   title: string;
   gameName: string;
   likes: number;
@@ -11,9 +11,9 @@ interface RelatedComicProps {
   imageSrc: string;
 }
 
-function RelatedComicCard({ id, title, gameName, likes, comments, imageSrc }: RelatedComicProps) {
+function RelatedComicCard({ nftAddress, title, gameName, likes, comments, imageSrc }: RelatedComicProps) {
   return (
-    <Link href={`/comic/${id}`} className="block comic-card">
+    <Link href={`/comic/${nftAddress}`} className="block comic-card">
       <div className="relative">
         <Image
           src={imageSrc}
@@ -53,8 +53,8 @@ export function RelatedComics({ comics }: RelatedComicsProps) {
       <div className="grid grid-cols-1 gap-6">
         {comics.map((comic) => (
           <RelatedComicCard
-            key={comic.id}
-            id={comic.id}
+            key={comic.nftAddress}
+            nftAddress={comic.nftAddress}
             title={comic.title}
             gameName={comic.gameName}
             likes={comic.likes}
