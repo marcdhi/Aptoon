@@ -68,6 +68,19 @@
 - **Creator Dashboard**: Manage revenue, performance, and content
 - **Wallet & Transaction Viewer**: Manage rewards and NFTs directly
 
+## How to use tech
+### [Metaplex](https://github.com/marcdhi/Aptoon/blob/main/src/lib/nft.ts)
+* We used **Umi** and the **Metaplex Core SDK** to mint NFTs.
+* All NFTs are **minted fully on-chain**, with metadata **stored using Metaplex Core**.
+* By following Metaplex standards, our NFTs are **compatible with major marketplaces and tools**.
+* This setup enables a scalable ecosystem for **community-created "Storybook NFTs" and secondary creations**.
+
+### [Solana](https://github.com/marcdhi/Aptoon/blob/main/src/lib/nft.ts)
+* All NFT-related transactions are executed **on the Solana blockchain**.
+* Solana’s **low fees and fast transaction speeds** make it ideal for large-scale UGC NFT minting.
+* The APTOON platform is **built on Solana**, with a focus on growing the Solana gaming ecosystem before expanding to multi-chain.
+* We leverage Solana’s **decentralization and reliability** to turn gameplay experiences into **Web3 digital assets**.
+
 ## How It Works
 
 ![image](https://github.com/user-attachments/assets/f34834cb-ac92-4042-82df-41071c3a6abf)
