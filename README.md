@@ -13,8 +13,6 @@
 	<img src="https://github.com/user-attachments/assets/b66a5581-a3fd-4177-815e-78096cc7c8f0" width="100" height="100">
 <a><a href="https://github.com/marcdhi/Aptoon/blob/main/src/lib/nft.ts" height="5" width="10" target="_blank">
 	<img src="https://github.com/user-attachments/assets/d316db27-65a4-44f3-a252-e4c7b3eaadca" width="100" height="100">
-<a><a><a href="" height="5" width="10" target="_blank">
-	<img src="https://github.com/user-attachments/assets/22a2cdbc-d75e-46f4-b3e5-dcaa1a8bd576" width="100" height="100">
 <a><a></p>
 
 <p align="center">
