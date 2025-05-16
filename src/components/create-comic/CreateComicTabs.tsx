@@ -6,6 +6,9 @@ import { SuccessMessage } from './SuccessMessage';
 import Image from 'next/image';
 import { GenerationSteps } from './GenerationSteps';
 import type { ComicMetadata } from '@/lib/chat';
+import { mintComicNFT } from '@/lib/nft';
+import { toast } from 'sonner';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 interface CreateComicTabsProps {
   isGenerating: boolean;
@@ -13,20 +16,76 @@ interface CreateComicTabsProps {
   onRegenerate: () => void;
 }
 
+interface MintingResult {
+  explorerUrl: string;
+  metaplexUrl: string;
+}
+
 export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: CreateComicTabsProps) {
+  const wallet = useWallet();
   const [activeStep, setActiveStep] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [generatedComicUrl, setGeneratedComicUrl] = useState<string | null>(null);
   const [comicMetadata, setComicMetadata] = useState<ComicMetadata | null>(null);
+  const [isMinting, setIsMinting] = useState(false);
+  const [mintingResult, setMintingResult] = useState<MintingResult | null>(null);
 
   const handlePublish = () => {
+    if (!wallet.connected) {
+      toast.error('Please connect your wallet first');
+      return;
+    }
     setShowConfirmation(true);
   };
 
-  const confirmPublish = () => {
-    setShowConfirmation(false);
-    setShowSuccess(true);
+  const confirmPublish = async () => {
+    if (!generatedComicUrl || !comicMetadata) {
+      toast.error('No comic to publish');
+      return;
+    }
+
+    if (!wallet.connected) {
+      toast.error('Please connect your wallet first');
+      return;
+    }
+
+    setIsMinting(true);
+    try {
+      const attributes = [
+        { trait_type: 'Genre', value: comicMetadata.genre },
+        { trait_type: 'Mood', value: comicMetadata.mood },
+        ...comicMetadata.suggestedTags.map(tag => ({
+          trait_type: 'Tag',
+          value: tag
+        }))
+      ];
+
+      const result = await mintComicNFT(
+        wallet,
+        generatedComicUrl,
+        comicMetadata.title,
+        comicMetadata.description,
+        attributes
+      );
+
+      setMintingResult({
+        explorerUrl: result.explorerUrl,
+        metaplexUrl: result.metaplexUrl
+      });
+
+      toast.success('Comic successfully minted as NFT!');
+      console.log('\nNFT Created');
+      console.log('View Transaction:', result.explorerUrl);
+      console.log('View NFT:', result.metaplexUrl);
+    } catch (error) {
+      console.error('Error minting NFT:', error);
+      toast.error('Failed to mint NFT. Please try again.');
+    } finally {
+      setIsMinting(false);
+      setShowConfirmation(false);
+      setShowSuccess(true);
+    }
   };
 
   const handleComicGenerated = (url: string, metadata: ComicMetadata) => {
@@ -37,7 +96,12 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
   };
 
   if (showSuccess) {
-    return <SuccessMessage />;
+    return (
+      <SuccessMessage 
+        explorerUrl={mintingResult?.explorerUrl}
+        metaplexUrl={mintingResult?.metaplexUrl}
+      />
+    );
   }
 
   const getStepTitle = (step: number) => {
@@ -174,19 +238,21 @@ export function CreateComicTabs({ isGenerating, onGenerate, onRegenerate }: Crea
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-[2px] max-w-md w-full mx-4 space-y-4">
             <h3 className="text-xl font-heading font-bold">Confirm Publication</h3>
-            <p>Are you sure you want to publish this comic? This action cannot be undone.</p>
+            <p>Are you sure you want to publish this comic as an NFT? This action cannot be undone.</p>
             <div className="flex justify-end gap-4 pt-4">
               <button 
                 className="btn-aptoon"
                 onClick={() => setShowConfirmation(false)}
+                disabled={isMinting}
               >
                 CANCEL
               </button>
               <button 
                 className="btn-aptoon"
                 onClick={confirmPublish}
+                disabled={isMinting}
               >
-                CONFIRM
+                {isMinting ? 'MINTING...' : 'CONFIRM'}
               </button>
             </div>
           </div>
