@@ -3,7 +3,7 @@
 <h2 align="center">Launches First Solana-Based <code>AI Comic</code> Platform for Gamers</h2>
 
 <p align="center">
-  <a href="https://aptoon.vercel.app/" style="color: #a77dff">APTOON</a> | <a href="https://youtu.be/4y9XiT8Va48" style="color: #a77dff">Demo Video</a> | <a href="https://www.figma.com/deck/oWnkBS5doDCOEGzOtN20rx" style="color: #a77dff">Pitchdeck</a> | <a href="https://youtu.be/aM-Ge62Z4XM" style="color: #a77dff">Pitch Video</a>  | <a href="https://x.com/Aptoondotsol" style="color: #a77dff">Twitter</a>
+  <a href="https://aptoon.vercel.app/" style="color: #a77dff">APTOON</a> | <a href="https://youtu.be/4y9XiT8Va48" style="color: #a77dff">Demo Video</a> | <a href="https://www.figma.com/deck/ascQgZH3BNCf7waUOfMMDE" style="color: #a77dff">Pitchdeck</a> | <a href="https://youtu.be/aM-Ge62Z4XM" style="color: #a77dff">Pitch Video</a>  | <a href="https://x.com/Aptoondotsol" style="color: #a77dff">Twitter</a>
 </p>
 
 <h2 align="center">Sponsor (Click on the logo)</h2>
@@ -83,7 +83,7 @@
 
 ## How It Works
 
-![image](https://github.com/user-attachments/assets/f34834cb-ac92-4042-82df-41071c3a6abf)
+<img width="2807" height="1452" alt="image" src="https://github.com/user-attachments/assets/8c3ed665-76ea-4720-bfca-8a6ce6af65fb" />
 
 1. **Connect Solana Wallet** (Phantom, Backpack, etc.)
 2. **Link Game Account** (via API or manual input)
